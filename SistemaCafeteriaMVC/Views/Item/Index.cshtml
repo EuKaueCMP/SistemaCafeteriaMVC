@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SistemaCafeteriaMVC.Models.ItensCafeteria>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Lista itens cafeteria</title>
+        <link rel="stylesheet" href="~/css/site.css" />
+        <script src="~/js/site.js"></script>
+    </head> 
+    <body>
+    <h1> Itens da cafeteria</h1>
+    <a href="/item/CadastrarItem" class="btn btn-success">Adicionar novo item</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Os itens da cafeteria serão exibidos aqui -->
+            @if(Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Nome</td>
+                        <td>@item.Descricao</td>
+                        <td>@item.Preco.ToString("C")</td>
+                        <td>
+                            <form asp-action="Remover" asp-controller="Item" style="display:inline">
+                                <input type="hidden" name="itemId" value="@item.ItemId" />
+                                <button type="submit" class="btn btn-danger">Remover</button>
+                            </form>
+                            <a asp-action="EditarItem" asp-controller="Item" asp-route-Id="@item.ItemId" class="btn btn-primary">Editar</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3">Nenhum item encontrado.</td>
+                </tr>
+            })
+        </tbody>
+    </table>
+</body>
+</html>

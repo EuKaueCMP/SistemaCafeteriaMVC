@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/js/site.js"></script>"
+</head>
+<body>
+    <h1>Entrar</h1>
+    <form method="post" asp-action="Login" asp-controller="Usuario">
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+        </div>
+        <div>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required />
+        </div>
+        <button type="submit">Entrar</button>
+        <a href="/Usuario/Cadastro">já possui uma conta? Login</a>
+        <p>@ViewBag.Erro</p>
+    </form>
+</body>
+</html>
